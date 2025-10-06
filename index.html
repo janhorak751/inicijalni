@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Barcelona - CyberSigurnost</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        :root {
+            --barca-blue: #004d98;
+            --barca-red: #a50044;
+            --barca-dark: #002d62;
+            --barca-light: #db0030;
+            --light-color: #f9f9f9;
+            --text-color: #333;
+            --spacing: 1rem;
+            --border-radius: 5px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--barca-blue);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--barca-red);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        
+        header {
+            background: linear-gradient(to right, var(--barca-dark), var(--barca-blue));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        
+        main {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('https://images.unsplash.com/photo-1596510913920-85d87a1800d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--barca-red);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--barca-light);
+            color: white;
+        }
+        
+       
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--barca-dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--barca-blue);
+        }
+        
+        .services-grid, .team-grid, .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-card, .team-card, .news-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--barca-blue);
+        }
+        
+        .service-card:hover, .team-card:hover, .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            background: linear-gradient(to right, var(--barca-blue), var(--barca-dark));
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content, .team-content, .news-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3, .team-content h3, .news-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--barca-dark);
+        }
+        
+        .team-image, .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .pricing-table th, .pricing-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-table th {
+            background-color: var(--barca-blue);
+            color: white;
+        }
+        
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--barca-blue);
+        }
+        
+        .map-container {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+        
+        
+        footer {
+            background: linear-gradient(to right, var(--barca-dark), var(--barca-blue));
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-section p, .footer-section a {
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #ccc;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            color: white;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--barca-red);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+        }
+        
+        .newsletter-form button {
+            background-color: var(--barca-red);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="FC Barcelona Logo">
+                    <h1>FC Barcelona CyberSigurnost</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Početna</a></li>
+                        <li><a href="#about">O nama</a></li>
+                        <li><a href="#services">Usluge</a></li>
+                        <li><a href="#news">Novosti</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <main>
+        <div class="container">
+            
+            <section id="home" class="hero">
+                <h2>Zaštita FC Barcelone u digitalnom svijetu</h2>
+                <p>Osigurajte sigurnost podataka i digitalne infrastrukture najvećeg nogometnog kluba na svijetu</p>
+                <a href="#contact" class="btn">Kontaktirajte nas</a>
+            </section>
+
+            
+            <section id="about">
+                <h2 class="section-title">O nama</h2>
+                <p>Odjel za cyber sigurnost FC Barcelone osnovan je 2015. godine kako bismo zaštitili osjetljive podatke kluba, igrača i navijača od modernih cyber prijetnji. Naš tim stručnjaka kombinira strast prema nogometu s vrhunskom ekspertizom u području informacijske sigurnosti.</p>
+                
+                <h3 style="margin: 2rem 0 1rem; color: var(--barca-dark);">Naš tim</h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Josep Guardiola" class="team-image">
+                        <div class="team-content">
+                            <h3>Josep Guardiola</h3>
+                            <p>Direktor cyber sigurnosti. Bivši šef sigurnosnih operacija za katalonsku vladu.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Carles Puyol" class="team-image">
+                        <div class="team-content">
+                            <h3>Carles Puyol</h3>
+                            <p>Specijalist za zaštitu podataka i provedbu GDPR propisa za europske projekte.</p>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Xavi Hernández" class="team-image">
+                        <div class="team-content">
+                            <h3>Xavi Hernández</h3>
+                            <p>Vodeći penetration tester s certifikatima OSCP i CEH. Specijaliziran za zaštitu infrastrukture.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section id="services">
+                <h2 class="section-title">Naše usluge</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Zaštita navijačkih podataka</h3>
+                            <p>Zaštita osobnih podataka preko 300 milijuna navijača širom svijeta i sprječavanje curenja podataka.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Zaštita Camp Noua</h3>
+                            <p>Kompletna zaštita digitalne infrastrukture najvećeg stadiona u Europi od cyber napada.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Sigurnosna edukacija</h3>
+                            <p>Edukacijski programi za igrače, osoblje i menadžment o cyber sigurnosnim praksama.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--barca-dark);">Cjenik usluga</h3>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </section>
+
+            
+            <section id="news">
+                <h2 class="section-title">Novosti</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <img src="\\dejavu\StudentDesktop\jan.horak\Desktop\horak\images.jfif" alt="Camp Nou" class="news-image">
+                        <div class="news-content">
+                            <h3>Nova cyber zaštita za Camp Nou</h3>
+                            <p>FC Barcelona je implementirala novi sustav cyber zaštite za renovirani Camp Nou.</p>
+                            <a href="#" class="btn">Pročitaj više</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digitalna sigurnost" class="news-image">
+                        <div class="news-content">
+                            <h3>Barcelona poboljšava zaštitu navijača</h3>
+                            <p>Novi sustav štiti podatke o navijačima od curenja i zlonamjernih napada.</p>
+                            <a href="#" class="btn">Pročitaj više</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cyber napadi" class="news-image">
+                        <div class="news-content">
+                            <h3>Kako se Barcelona borila protiv ransomware napada</h3>
+                            <p>Naš tim je uspješno odbio veliki ransomware napad prošlog mjeseca.</p>
+                            <a href="#" class="btn">Pročitaj više</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+    </main>
+
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>O nama</h3>
+                    <p>FC Barcelona CyberSigurnost štiti jedan od najvećih sportskih brendova na svijetu od modernih digitalnih prijetnji.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Camp Nou, Barcelona, Španjolska</p>
+                    <p><i class="fas fa-phone"></i> +34 902 1899 00</p>
+                    <p><i class="fas fa-envelope"></i> cybersecurity@fcbarcelona.com</p>
+                    <p><i class="fas fa-clock"></i> Radno vrijeme: 09:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Pratite nas</h3>
+                    <p>Budite u toku s najnovijim vijestima i sigurnosnim savjetima.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Barca Newsletter</h3>
+                    <p>Pretplatite se na naš newsletter za najnovije vijesti i sigurnosne upozorenja.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Unesite svoju email adresu" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 FC Barcelona CyberSigurnost. Sva prava pridržana.</p>
+                <p>
+                    <a href="#">Politika privatnosti</a> | 
+                    <a href="#">Uvjeti korištenja</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(email)) {
+                alert('Molimo unesite ispravan format email adrese (npr. ime@example.com)');
+                return false;
+            }
+            
+            alert('Hvala vam na poruci! Obratit ćemo vam se uskoro.');
+            this.reset();
+        });
+        
+        
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                
+                document.querySelector('nav ul').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>
